@@ -22,7 +22,7 @@ help:
 	@echo
 
 flask:
-	source venv/bin/activate; export FLASK_APP=app; export FLASK_ENV=development; flask run
+	poetry run flask run
 
 index:
 	open http://localhost:5000/index
