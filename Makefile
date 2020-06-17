@@ -1,4 +1,5 @@
 .PHONY: test
+name = "docker-flask-sqlite-skeleton"
 
 help:
 	@echo
@@ -28,16 +29,16 @@ index:
 	open http://localhost:5000/index
 
 image:
-	docker build -t docker-flask-sqlite-skeleton .
+	docker build -t $(name) .
 
 start:
-	docker run --name docker-flask-sqlite-skeleton -p 5000:5000 docker-flask-sqlite-skeleton
+	docker run --name $(name) -p 5000:5000 $(name)
 
 stop:
-	docker stop docker-flask-sqlite-skeleton; docker ps -a
+	docker stop $(name); docker ps -a
 
 restart:
-	docker restart docker-flask-sqlite-skeleton; docker ps
+	docker restart $(name); docker ps
 
 export:
 	poetry export -f requirements.txt > requirements.txt
