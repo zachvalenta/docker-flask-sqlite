@@ -1,6 +1,5 @@
 import os
 
-from dotenv import find_dotenv, load_dotenv
 from flask import Flask
 
 app = Flask(__name__)
