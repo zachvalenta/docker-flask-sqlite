@@ -1,7 +1,11 @@
 import os
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+
+"""
+CONFIG
+"""
 
 # construct path to SQLite file
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -26,7 +30,22 @@ class Thing(db.Model):
 # create tables on app start
 db.create_all()
 
+"""
+ROUTES
+"""
 
 @app.route('/healthcheck')
 def index():
     return "app runnning", 200
+
+@app.route("/get-things")
+def read():
+    things = [dict(id=x.pk, name=x.name) for x in Thing.query.all()]
+    return jsonify({"things": things})
+
+@app.route("/post-thing", methods=["POST"])
+def create():
+    thing = Thing(name=request.json["name"])
+    db.session.add(thing)
+    db.session.commit()
+    return jsonify({"thing": dict(id=thing.pk, name=thing.name)})

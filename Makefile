@@ -6,7 +6,12 @@ help:
 	@echo "🍶 FLASK"
 	@echo
 	@echo "flask:       start app"
-	@echo "hc:          hit healthcheck endpoint"
+	@echo
+	@echo "📡 API"
+	@echo
+	@echo "hc:          healthcheck endpoint"
+	@echo "get:         get all things"
+	@echo "post:        create one thing"
 	@echo
 	@echo "🚢 DOCKER"
 	@echo
@@ -27,6 +32,12 @@ flask:
 
 hc:
 	http http://localhost:5000/healthcheck
+
+get:
+	http http://localhost:5000/get-things
+
+post:
+	http POST http://localhost:5000/post-thing name=my_new_thing
 
 image:
 	docker build -t $(name) .
