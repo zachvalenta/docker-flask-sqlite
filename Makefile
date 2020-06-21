@@ -6,7 +6,7 @@ help:
 	@echo "🍶 FLASK"
 	@echo
 	@echo "flask:       start app"
-	@echo "index:       hit index route"
+	@echo "hc:          hit healthcheck endpoint"
 	@echo
 	@echo "🚢 DOCKER"
 	@echo
@@ -25,8 +25,8 @@ help:
 flask:
 	poetry run flask run
 
-index:
-	open http://localhost:5000/index
+hc:
+	http http://localhost:5000/healthcheck
 
 image:
 	docker build -t $(name) .
