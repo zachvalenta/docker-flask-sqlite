@@ -27,8 +27,16 @@ help:
 	@echo "deps:        list prod dependencies"
 	@echo
 
+#
+# 🍶 FLASK
+#
+
 flask:
 	poetry run flask run
+
+#
+# 🚢 DOCKER
+#
 
 image:
 	docker build -t $(name) .
@@ -42,6 +50,10 @@ stop:
 restart:
 	docker restart $(name); docker ps
 
+#
+# 📡 API
+#
+
 hc:
 	http http://localhost:5000/healthcheck
 
@@ -53,6 +65,10 @@ post:
 
 export:
 	poetry export -f requirements.txt > requirements.txt
+
+#
+# 📦 DEPENDENCIES
+#
 
 env:
 	poetry env info
