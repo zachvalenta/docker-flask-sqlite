@@ -8,6 +8,7 @@ authors = ["zachvalenta <zjv5002@gmail.com>"]
 python = "^3.6"
 flask = "^1.1.2"
 python-dotenv = "^0.13.0"
+flask-sqlalchemy = "^2.4.3"
 
 [tool.poetry.dev-dependencies]
 
