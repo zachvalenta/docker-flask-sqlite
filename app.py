@@ -7,18 +7,20 @@ from flask_sqlalchemy import SQLAlchemy
 CONFIG
 """
 
-# construct path to SQLite file
+# db - construct path to SQLite file
 basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, os.getenv("SQLITE_FILE"))
 db_uri = "sqlite:///" + db_path
 
-# init and config app, init db
+# app - init, config
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# db - init, declare model, create tables on app start
 db = SQLAlchemy(app)
 
-# declare model
+
 class Thing(db.Model):
     pk = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
@@ -27,7 +29,6 @@ class Thing(db.Model):
         return f"id {self.pk} name {self.name}"
 
 
-# create tables on app start
 db.create_all()
 
 """
