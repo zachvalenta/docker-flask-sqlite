@@ -7,18 +7,18 @@ help:
 	@echo
 	@echo "flask:       start app"
 	@echo
-	@echo "📡 API"
-	@echo
-	@echo "hc:          healthcheck endpoint"
-	@echo "get:         get all things"
-	@echo "post:        create one thing"
-	@echo
 	@echo "🚢 DOCKER"
 	@echo
 	@echo "image:       build image"
 	@echo "start:       start container"
 	@echo "stop:        stop container"
 	@echo "restart:     restart container"
+	@echo
+	@echo "📡 API"
+	@echo
+	@echo "hc:          healthcheck"
+	@echo "get:         get all things"
+	@echo "post:        create one thing"
 	@echo
 	@echo "📦 DEPENDENCIES"
 	@echo
@@ -29,15 +29,6 @@ help:
 
 flask:
 	poetry run flask run
-
-hc:
-	http http://localhost:5000/healthcheck
-
-get:
-	http http://localhost:5000/get-things
-
-post:
-	http POST http://localhost:5000/post-thing name=my_new_thing
 
 image:
 	docker build -t $(name) .
@@ -50,6 +41,15 @@ stop:
 
 restart:
 	docker restart $(name); docker ps
+
+hc:
+	http http://localhost:5000/healthcheck
+
+get:
+	http http://localhost:5000/get-things
+
+post:
+	http POST http://localhost:5000/post-thing name=my_new_thing
 
 export:
 	poetry export -f requirements.txt > requirements.txt
