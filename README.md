@@ -3,7 +3,7 @@
 Bare bones implementation of:
 
 * a Flask app
-* talking to a database
+* talking to a database (SQLite)
 * Dockerized
 
 ## how to run?
