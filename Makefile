@@ -15,6 +15,8 @@ help:
 	@echo "stop:        stop container"
 	@echo "restart:     restart container"
 	@echo "rm:          remove container"
+	@echo "list:        list all containers/images/volumes"
+	@echo "clean:       stop containers, rm all containers/images/volumes"
 	@echo
 	@echo "📡 API"
 	@echo
@@ -57,6 +59,12 @@ restart:
 
 rm: stop
 	docker rm $(name)
+
+list:
+	docker ps -a; docker images; docker volume ls
+
+clean:
+	docker ps -qa | xargs docker stop; docker system prune --volumes -f; docker image prune -af
 
 #
 # 📡 API
